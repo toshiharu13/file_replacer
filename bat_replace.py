@@ -6,27 +6,28 @@ import shutil
 def copy(batsourse,batdeest):
     try:
         shutil.copy(batsourse, batdest)
-        print('Успешно скопировано из ', batsourse, ' на ', ARM)
+        print(f'Успешно скопировано из {batsourse} на {ARM}')
     except FileNotFoundError:
-        print('Замена не произведена, нет программы мониторинга')
+        print('Замена не произведена, что то пошло не так')
 
 def mount(ARM):
-    os.system('mount -t cifs //'+ ARM + '/c$ /mnt/logs2/ --verbose -o user=vpn,password='+ PASS + '')
-    print('подключились к ', ARM)
+    os.system(f'mount -t cifs //{ARM}/c$ /mnt/logs2/ --verbose -o user={user},password={PASS}')
+    print(f'подключились к {ARM}')
 
 def unmount():
     os.system('umount /mnt/logs2')
-    print('Отключаемся от', ARM)
+    print(f'Отключаемся от {ARM}')
 
 
-batsourse = '/mnt/myfolder/temp/coredump.bat'
+batsourse = 'Settings.xml'
 batdest = '/mnt/logs2/procdump/coredump.bat'
 ARM = ''
-PASS = ''
+user = input('введите имя пользователя ')
+PASS = input('введите пароль ')
 
-with open('/home/boyko-ab/Документы/python/batreplace/listarm.txt', 'r') as infile:
+with open('listarm.txt', 'r') as infile:
     for line in infile:
        ARM = line.strip()
        mount(ARM)
-       copy(batsourse,batdest)
+       #copy(batsourse,batdest)
        unmount()

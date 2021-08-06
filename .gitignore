@@ -1,0 +1,10 @@
+.git/*
+
+venv/
+.venv
+.venv/
+
+.idea
+
+logs.log
+Settings.xml
