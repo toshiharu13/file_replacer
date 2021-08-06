@@ -11,11 +11,11 @@ def copy(batsourse,batdeest):
         print('Замена не произведена, что то пошло не так')
 
 def mount(ARM):
-    os.system(f'mount -t cifs //{ARM}/c$ /mnt/logs2/ --verbose -o user={user},password={PASS}')
+    os.system(f'sudo -S mount -t cifs //{ARM}c$ /home/boyko-ab/mnt/logs2/ --verbose -o user={user},password={PASS}')
     print(f'подключились к {ARM}')
 
-def unmount():
-    os.system('umount /mnt/logs2')
+def unmount(ARM):
+    os.system('sudo -S umount /home/boyko-ab/mnt/logs2/')
     print(f'Отключаемся от {ARM}')
 
 
@@ -30,4 +30,4 @@ with open('listarm.txt', 'r') as infile:
        ARM = line.strip()
        mount(ARM)
        #copy(batsourse,batdest)
-       unmount()
+       #unmount(ARM)
