@@ -3,16 +3,15 @@ import logging
 import os
 import shutil
 
-
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s; %(levelname)s; %(name)s; %(message)s',
     filename='logs.log',
     filemode='w',
-    )
+)
 
 
-def copy(batsourse,batdeest):
+def copy(batsourse, batdeest):
     """
     Копируем файлы
     """
@@ -27,7 +26,8 @@ def mount(arm, user, passwd):
     """
     Монтируем АРМ по шаре C$
     """
-    os.system(f'sudo -S mount -t cifs //{arm}/c$ /home/boyko-ab/mnt/logs2/ --verbose -o user={user},password={passwd}')
+    os.system(f'sudo -S mount -t cifs //{arm}/c$ /home/boyko-ab/mnt/logs2/ '
+              f'--verbose -o user={user},password={passwd}')
 
 
 def unmount(arm):
@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     with open('listarm.txt', 'r') as infile:
         for line in infile:
-           arm = line.strip()
-           mount(arm, user, passwd)
-           copy(batsourse,batdest)
-           unmount(arm)
+            arm = line.strip()
+            mount(arm, user, passwd)
+            copy(batsourse, batdest)
+            unmount(arm)
