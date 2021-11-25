@@ -1,10 +1,14 @@
 .git/*
 
+# virtual environment
 venv/
 .venv
 .venv/
 
+# settings
 .idea
+*.cfg
 
+# logs
 logs.log
-Settings.xml
+copy_folder/Settings.xml
